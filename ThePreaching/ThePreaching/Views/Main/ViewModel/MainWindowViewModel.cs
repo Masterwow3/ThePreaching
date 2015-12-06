@@ -24,14 +24,14 @@ namespace ThePreaching.Views.Main.ViewModel
         #endregion
         #region Methods
 
-        private void StartRecording(object param)
+        private async void StartRecording(object param)
         {
-            RecController.StartRecording();
+            RecController.StartRecording(@"C:\test01.wav");
         }
 
         private void StopRecording(object param)
         {
-            RecController.StopRecording(@"C:\","test01");
+            RecController.StopRecording();
         }
         #endregion
 

@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WindowsMediaFormat">
+      <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.WindowsMediaFormat.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -65,7 +71,8 @@
     </Compile>
     <Compile Include="Base\DelegateCommand.cs" />
     <Compile Include="Capturing\RecordingController.cs" />
-    <Compile Include="Capturing\MciCommand.cs" />
+    <Compile Include="Capturing\SavingWaveProvider.cs" />
+    <Compile Include="Languages.cs" />
     <Compile Include="Views\Main\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Views\Main\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -99,7 +106,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThePreachingServer\ThePreachingServer.csproj">
+      <Project>{205e116a-41b5-4ed1-a7b5-9b5a5f16d9c0}</Project>
+      <Name>ThePreachingServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

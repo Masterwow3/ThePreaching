@@ -1,25 +1,54 @@
 ﻿using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Windows;
+using NAudio.Wave;
+using ThePreachingServer;
 
 namespace ThePreaching.Capturing
 {
     public class RecordingController
     {
-        [DllImport("winmm.dll")]
-        private static extern int mciSendString(string lpstrCommand, string lpstrReturnString, int uReturnLength, int hwndCallback);
+        private WaveIn recorder;
+        private BufferedWaveProvider bufferedWaveProvider;
+        private SavingWaveProvider savingWaveProvider;
+        private readonly MulticastConnection multicastConnection;
 
-        public void StartRecording()
+        public RecordingController()
         {
-            mciSendString("open new Type waveaudio Alias recsound", "", 0, 0);
-            mciSendString("record recsound", "", 0, 0);
+            multicastConnection = new MulticastConnection(IPAddress.Parse("239.0.0.222"));
+            new ThePreachingServer.Main();
         }
 
-        public void StopRecording(string savePath, string filename)
+
+        public void StartRecording(string filePath)
         {
-           var path = Path.Combine(savePath, filename);
-            path += ".wav";
-            mciSendString($"save recsound {path}", "", 0, 0);
-            mciSendString("close recsound", "", 0, 0);
+            // set up the recorder
+            recorder = new WaveIn();
+            recorder.WaveFormat = new WaveFormat();
+            recorder.DataAvailable += RecorderOnDataAvailable;
+
+            // set up our signal chain
+            bufferedWaveProvider = new BufferedWaveProvider(recorder.WaveFormat);
+            savingWaveProvider = new SavingWaveProvider(bufferedWaveProvider, filePath);
+            
+            recorder.StartRecording();
         }
+        public void StopRecording()
+        {
+            // stop recording
+            recorder.StopRecording();
+            // finalise the WAV file
+            savingWaveProvider.Dispose();
+
+        }
+        #region Events
+        private void RecorderOnDataAvailable(object sender, WaveInEventArgs waveInEventArgs)
+        {
+            bufferedWaveProvider.AddSamples(waveInEventArgs.Buffer, 0, waveInEventArgs.BytesRecorded);
+            multicastConnection.UdpClient.Send(waveInEventArgs.Buffer, waveInEventArgs.BytesRecorded, multicastConnection.RemoteEndPoint);
+        }
+        #endregion
     }
 }
