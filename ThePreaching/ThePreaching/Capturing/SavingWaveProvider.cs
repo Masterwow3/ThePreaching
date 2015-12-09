@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using NAudio.Wave;
 using ThePreachingServer;
+using MulticastConnection = ThePreaching.Base.MulticastConnection;
 
 namespace ThePreaching.Capturing
 {

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ThePreachingServer
+namespace ThePreaching.Base
 {
     public class MulticastConnection
     {
-        //IP Range Multicast: 239.0.0.1 - 239.255.255.255
+        //IP Range Multicast: 224.0.0.116 - 224.0.0.250
         public MulticastConnection(IPAddress multicastAddress)
         {
             MulticastAddress = multicastAddress;

@@ -22,7 +22,7 @@ namespace Client
 
             client.Client.Bind(localEp);
 
-            IPAddress multicastaddress = IPAddress.Parse("239.0.0.222");
+            IPAddress multicastaddress = IPAddress.Parse("239.0.0.1");
             client.JoinMulticastGroup(multicastaddress);
 
             Console.WriteLine("Listening this will never quit so you will need to ctrl-c it");

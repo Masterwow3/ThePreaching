@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9B9D7D98-1D1F-49BB-AEC1-3EAD69B17EEC}</ProjectGuid>
+    <ProjectGuid>{9EA0A158-91FA-43C3-A673-6369974DD9A7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ThePreaching</RootNamespace>
-    <AssemblyName>ThePreaching</AssemblyName>
+    <RootNamespace>PreachingServer</RootNamespace>
+    <AssemblyName>PreachingServer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,14 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAudio">
-      <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.WindowsMediaFormat">
-      <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.WindowsMediaFormat.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,24 +58,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\Main\View\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base\DelegateCommand.cs" />
-    <Compile Include="Base\MulticastConnection.cs" />
-    <Compile Include="Capturing\RecordingController.cs" />
-    <Compile Include="Capturing\SavingWaveProvider.cs" />
-    <Compile Include="Languages.cs" />
-    <Compile Include="Views\Main\ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="Views\Main\View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Base\Result\IResult.cs" />
+    <Compile Include="Base\Result\MethodResult.cs" />
+    <Compile Include="Base\Result\ResultState.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Server\MulticastCommunication.cs" />
+    <Compile Include="Server\ServerDisclosure.cs" />
+    <Compile Include="Server\WebService\Rest\IRestService.cs" />
+    <Compile Include="Server\WebService\Rest\RestService.cs" />
+    <Compile Include="Server\WebService\Rest\Routing.cs" />
+    <Compile Include="Server\WebService\WebService.cs" />
+    <Compile Include="Views\Main\ViewModel\Settings.cs" />
+    <Compile Include="Views\Main\View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\ViewModel\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,6 +97,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,12 +108,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Page Include="Views\Main\View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ThePreachingServer\ThePreachingServer.csproj">
-      <Project>{205e116a-41b5-4ed1-a7b5-9b5a5f16d9c0}</Project>
-      <Name>ThePreachingServer</Name>
+    <ProjectReference Include="..\Entitie\Entitie.csproj">
+      <Project>{bf129a15-fb44-470a-b45e-6caa845c054d}</Project>
+      <Name>Entitie</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

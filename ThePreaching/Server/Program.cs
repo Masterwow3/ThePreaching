@@ -14,7 +14,7 @@ namespace Server
         {
             UdpClient udpclient = new UdpClient();
 
-            IPAddress multicastaddress = IPAddress.Parse("239.0.0.222");
+            IPAddress multicastaddress = IPAddress.Parse("239.0.0.1");
             udpclient.JoinMulticastGroup(multicastaddress);
             IPEndPoint remoteep = new IPEndPoint(multicastaddress, 2222);
 
@@ -22,14 +22,13 @@ namespace Server
 
             Console.WriteLine("Press ENTER to start sending messages");
             Console.ReadLine();
-
-            for (int i = 0; i <= 8000; i++)
+            
+            while (true)
             {
-                buffer = Encoding.Unicode.GetBytes(i.ToString());
+                string input = Console.ReadLine();
+                buffer = Encoding.Unicode.GetBytes(input);
                 udpclient.Send(buffer, buffer.Length, remoteep);
-                Console.WriteLine("Sent " + i);
             }
-
             Console.WriteLine("All Done! Press ENTER to quit.");
             Console.ReadLine();
         }

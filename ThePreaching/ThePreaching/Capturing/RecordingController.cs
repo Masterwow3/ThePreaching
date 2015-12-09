@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using NAudio.Wave;
 using ThePreachingServer;
+using MulticastConnection = ThePreaching.Base.MulticastConnection;
 
 namespace ThePreaching.Capturing
 {
@@ -18,7 +19,6 @@ namespace ThePreaching.Capturing
         public RecordingController()
         {
             multicastConnection = new MulticastConnection(IPAddress.Parse("239.0.0.222"));
-            new ThePreachingServer.Main();
         }
 
 

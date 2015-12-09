@@ -1,0 +1,58 @@
+﻿<Window x:Class="PreachingServer.Views.Main.View.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PreachingServer"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" Closing="Window_Closing" Loaded="Window_Loaded">
+    <StackPanel Margin="5">
+        <TextBlock Text="The Preaching Server" FontWeight="Bold" FontSize="21.333"
+                   />
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,10,0,0">
+            <StackPanel Width="Auto" VerticalAlignment="Stretch">
+                <TextBlock Text="Aktuell übersetzte Sprachen"/>
+                <DataGrid ItemsSource="{Binding TranslatedLanguages}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sprache"
+                                            MinWidth="100"/>
+                        <DataGridTextColumn Header="Anzahl Zuhörer"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBlock Text="Aktueller Prediger:"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200"
+                             HorizontalAlignment="Left"
+                             Text="{Binding CurrentPreacher, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Bestätigen"
+                            HorizontalAlignment="Right"
+                            Margin="5,0,0,0"
+                            Command="{Binding SetPreacherCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Text="Server Hostname / IP Adresse:"/>
+                        <TextBox Width="200"
+                                 Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="3,0,0,0">
+                        <TextBlock Text="Port:"/>
+                        <TextBox MinWidth="50"
+                             MaxLength="5"
+                                 Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <Button Content="Bestätigen"
+                            Margin="5,0,0,0"
+                            IsEnabled="{Binding SetServerNameEnabled}"
+                            Command="{Binding SetServernameCommand}"
+                            VerticalAlignment="Bottom"/>
+                </StackPanel>
+
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
