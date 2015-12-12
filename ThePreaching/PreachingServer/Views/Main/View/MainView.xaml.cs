@@ -25,6 +25,8 @@ namespace PreachingServer.Views.Main.View
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainViewModel.Settings.LoadSettings();
+            MainViewModel.Port = MainViewModel.Settings.Port;
+            MainViewModel.ServerName = MainViewModel.Settings.ServerName;
         }
     }
 }

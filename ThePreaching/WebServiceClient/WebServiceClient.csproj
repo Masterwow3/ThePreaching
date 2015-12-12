@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF129A15-FB44-470A-B45E-6CAA845C054D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{11082FF3-70A2-4A19-A420-B91158654E56}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Entitie</RootNamespace>
-    <AssemblyName>Entitie</AssemblyName>
+    <RootNamespace>WebServiceClient</RootNamespace>
+    <AssemblyName>WebServiceClient</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,14 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Language\LanguageEnum.cs" />
-    <Compile Include="Language\TranslatedLanguage.cs" />
+    <Compile Include="Base\WebService\Request.cs" />
+    <Compile Include="Base\WebService\Response.cs" />
+    <Compile Include="Base\DelegateCommand.cs" />
+    <Compile Include="Base\Result\IResult.cs" />
+    <Compile Include="Base\Result\MethodResult.cs" />
+    <Compile Include="Base\Result\ResultState.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Translator\Translator.cs" />
-    <Compile Include="User\User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Requests\" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entitie\Entitie.csproj">
+      <Project>{bf129a15-fb44-470a-b45e-6caa845c054d}</Project>
+      <Name>Entitie</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

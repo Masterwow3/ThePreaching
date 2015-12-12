@@ -108,6 +108,6 @@
         NorthernIreland,
         Vietnamesisch,
         Weißrussisch,
-        Sango,
+        Sango
     }
 }

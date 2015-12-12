@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PreachingServer.Annotations;
 using PreachingServer.Server;
@@ -88,6 +89,10 @@ namespace PreachingServer.Views.Main.ViewModel
 
         #region Methods
 
+        private async Task RefreshUserList()
+        {
+            
+        }
         private void SetPreacher(object param)
         {
             Settings.CurrentPreacher = CurrentPreacher;

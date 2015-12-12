@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -67,8 +68,13 @@
     <Compile Include="Base\Result\MethodResult.cs" />
     <Compile Include="Base\Result\ResultState.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Server\BL\CurrentTranslatorsBL.cs" />
+    <Compile Include="Server\BL\MulticastBL.cs" />
+    <Compile Include="Server\BL\UserBL.cs" />
     <Compile Include="Server\MulticastCommunication.cs" />
     <Compile Include="Server\ServerDisclosure.cs" />
+    <Compile Include="Server\WebService\Base\Request.cs" />
+    <Compile Include="Server\WebService\Base\Response.cs" />
     <Compile Include="Server\WebService\Rest\IRestService.cs" />
     <Compile Include="Server\WebService\Rest\RestService.cs" />
     <Compile Include="Server\WebService\Rest\Routing.cs" />
