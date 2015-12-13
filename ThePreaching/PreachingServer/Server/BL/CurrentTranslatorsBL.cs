@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Entitie.Language;
+using Entitie.Requests.Base;
 using Entitie.Translator;
 using Entitie.User;
-using PreachingServer.Server.WebService.Base;
 
 namespace PreachingServer.Server.BL
 {

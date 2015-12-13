@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using NAudio.Wave;
-using ThePreachingServer;
 using MulticastConnection = ThePreaching.Base.MulticastConnection;
 
 namespace ThePreaching.Capturing

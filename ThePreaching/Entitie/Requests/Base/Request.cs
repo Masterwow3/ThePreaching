@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PreachingServer.Server.WebService.Base
+namespace Entitie.Requests.Base
 {
     [DataContract]
     public class Request<T>

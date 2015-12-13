@@ -64,22 +64,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base\DelegateCommand.cs" />
-    <Compile Include="Base\Result\IResult.cs" />
-    <Compile Include="Base\Result\MethodResult.cs" />
-    <Compile Include="Base\Result\ResultState.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Server\BL\CurrentTranslatorsBL.cs" />
     <Compile Include="Server\BL\MulticastBL.cs" />
     <Compile Include="Server\BL\UserBL.cs" />
-    <Compile Include="Server\MulticastCommunication.cs" />
     <Compile Include="Server\ServerDisclosure.cs" />
-    <Compile Include="Server\WebService\Base\Request.cs" />
-    <Compile Include="Server\WebService\Base\Response.cs" />
     <Compile Include="Server\WebService\Rest\IRestService.cs" />
     <Compile Include="Server\WebService\Rest\RestService.cs" />
     <Compile Include="Server\WebService\Rest\Routing.cs" />
     <Compile Include="Server\WebService\WebService.cs" />
     <Compile Include="Views\Main\ViewModel\Settings.cs" />
+    <Compile Include="Views\Main\View\Converter\IsCheckedToContentConverter.cs" />
     <Compile Include="Views\Main\View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

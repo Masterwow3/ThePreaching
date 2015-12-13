@@ -2,9 +2,8 @@
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using Entitie.Language;
-using PreachingServer.Base.Result;
+using Entitie.Requests.Base;
 using PreachingServer.Server.BL;
-using PreachingServer.Server.WebService.Base;
 
 namespace PreachingServer.Server.WebService.Rest
 {

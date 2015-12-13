@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using System.Threading;
 
-namespace PreachingServer.Base.Result
+namespace Entitie.Requests.Result
 {
     public interface IResult
     {

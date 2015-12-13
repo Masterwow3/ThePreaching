@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using ThePreaching.Base;
+using Application = System.Windows.Application;
 
 namespace ThePreaching
 {
@@ -13,5 +15,6 @@ namespace ThePreaching
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

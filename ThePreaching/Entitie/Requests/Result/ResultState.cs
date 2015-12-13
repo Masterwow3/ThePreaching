@@ -1,4 +1,4 @@
-﻿namespace PreachingServer.Base.Result
+﻿namespace Entitie.Requests.Result
 {
     public enum ResultState
     {

@@ -105,7 +105,7 @@ namespace PreachingServer.Views.Main.ViewModel
                 return;
             Settings.Port = this.Port;
             Settings.ServerName = this.ServerName;
-            _disclosure = new ServerDisclosure(Settings.ServerName);
+            _disclosure = new ServerDisclosure($"{Settings.ServerName}:{Settings.Port}");
             _disclosure.StartDisclosure();
             _webService = new WebService(Settings.ServerName,Settings.Port);
             _webService.StartWebService();

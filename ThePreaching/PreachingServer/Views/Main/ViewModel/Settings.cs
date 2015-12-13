@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using PreachingServer.Annotations;
-using PreachingServer.Base.Result;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Entitie.Requests.Result;
 
 namespace PreachingServer.Views.Main.ViewModel
 {
@@ -99,7 +99,7 @@ namespace PreachingServer.Views.Main.ViewModel
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(fullSettingsPath, FileMode.Open);
                 var settings = (Settings) formatter.Deserialize(stream);
-
+                stream.Close();
                 this.Port = settings.Port;
                 this.ServerName = settings.ServerName;
 

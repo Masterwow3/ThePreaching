@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PreachingServer.Base.Result
+namespace Entitie.Requests.Result
 {
     public class MethodResult : IResult
     {

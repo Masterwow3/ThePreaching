@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Entitie.Requests.Multicast;
 
 namespace PreachingServer.Server
 {
@@ -24,7 +25,7 @@ namespace PreachingServer.Server
             _client.ExclusiveAddressUse = false;
 
             _client.Client.Bind(_localEp);
-            IPAddress multicastaddress = IPAddress.Parse("239.0.0.1");
+            IPAddress multicastaddress = IPAddress.Parse(MulticastCommunication.FindServerMulticastAddress);
             _remoteep = new IPEndPoint(multicastaddress, 2222);
             _client.JoinMulticastGroup(multicastaddress);
         }

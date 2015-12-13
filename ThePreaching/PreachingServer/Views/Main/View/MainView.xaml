@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PreachingServer"
              mc:Ignorable="d" 
+        Title="The Preaching - Server"
              d:DesignHeight="300" d:DesignWidth="600" Closing="Window_Closing" Loaded="Window_Loaded">
     <StackPanel Margin="5">
         <TextBlock Text="The Preaching Server" FontWeight="Bold" FontSize="21.333"

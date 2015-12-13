@@ -3,8 +3,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using Entitie.Language;
-using PreachingServer.Base.Result;
-using PreachingServer.Server.WebService.Base;
+using Entitie.Requests.Base;
 
 namespace PreachingServer.Server.WebService.Rest
 {

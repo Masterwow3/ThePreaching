@@ -4,7 +4,7 @@ using ThePreaching.Capturing;
 
 namespace ThePreaching.Views.Main.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         public MainWindowViewModel()
         {

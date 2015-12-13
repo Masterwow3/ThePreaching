@@ -4,22 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThePreaching"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+       mc:Ignorable="d"
+        Title="The Preaching - Translator" Height="350" Width="525">
+    <Window.Resources>
+    </Window.Resources>
+    <Grid Margin="5">
         <StackPanel>
+            <TextBlock Text="The Preaching Translator"
+                       FontWeight="Bold"
+                       FontSize="21.333"
+                       Margin="0,0,0,10"/>
             <StackPanel Orientation="Horizontal">
-            <Button Content="start"
+                <Button Content="S"
                     Command="{Binding StartRecordingCommand}"/>
                 <Button Content="stop"
                     Command="{Binding StopRecordingCommand}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Aufnahmequelle"
-                           Padding="3"
-                           VerticalAlignment="Center"/>
-                <ComboBox MinWidth="200"
-                          Padding="3"/>
             </StackPanel>
         </StackPanel>
     </Grid>

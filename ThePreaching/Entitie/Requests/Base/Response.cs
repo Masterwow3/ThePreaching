@@ -1,6 +1,6 @@
-﻿using PreachingServer.Base.Result;
+﻿using Entitie.Requests.Result;
 
-namespace PreachingServer.Server.WebService.Base
+namespace Entitie.Requests.Base
 {
     public class Response
     {

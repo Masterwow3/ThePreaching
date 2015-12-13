@@ -40,6 +40,9 @@ namespace WebServiceClient
 
                 string postBody = JsonSerializer(gizmo);
                 HttpResponseMessage response = await client.PostAsync("ThePreaching/GetUserDefaultLanguage", new StringContent(postBody, Encoding.UTF8, "application/json"));
+                DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Response));
+                var content = await response.Content.ReadAsStreamAsync();
+                object resp = jsonSerializer.ReadObject(content);
                 //if (response.IsSuccessStatusCode)
                 //{
                 //    Uri gizmoUrl = response.Headers.Location;
