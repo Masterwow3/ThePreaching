@@ -40,6 +40,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,20 +66,27 @@
     </Compile>
     <Compile Include="Base\DelegateCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Server\AppSettings.cs" />
     <Compile Include="Server\BL\CurrentTranslatorsBL.cs" />
     <Compile Include="Server\BL\MulticastBL.cs" />
     <Compile Include="Server\BL\UserBL.cs" />
     <Compile Include="Server\ServerDisclosure.cs" />
+    <Compile Include="Server\WebApi.cs" />
     <Compile Include="Server\WebService\Rest\IRestService.cs" />
     <Compile Include="Server\WebService\Rest\RestService.cs" />
     <Compile Include="Server\WebService\Rest\Routing.cs" />
     <Compile Include="Server\WebService\WebService.cs" />
+    <Compile Include="Views\Main\ViewModel\MulticastAddress.cs" />
     <Compile Include="Views\Main\ViewModel\Settings.cs" />
+    <Compile Include="Views\Main\ViewModel\SettingsViewModel.cs" />
     <Compile Include="Views\Main\View\Converter\IsCheckedToContentConverter.cs" />
     <Compile Include="Views\Main\View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\ViewModel\MainViewModel.cs" />
+    <Compile Include="Views\Main\View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -113,11 +121,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Main\View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entitie\Entitie.csproj">
-      <Project>{bf129a15-fb44-470a-b45e-6caa845c054d}</Project>
-      <Name>Entitie</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{1c0125b8-a284-4272-8fd2-1898e9b82b23}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

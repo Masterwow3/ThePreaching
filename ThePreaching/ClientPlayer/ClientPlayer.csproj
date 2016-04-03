@@ -41,8 +41,9 @@
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NAudio">
-      <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.dll</HintPath>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NAudio.WindowsMediaFormat">
       <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.WindowsMediaFormat.dll</HintPath>

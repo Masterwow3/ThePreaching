@@ -49,6 +49,14 @@
     <Reference Include="NAudio.WindowsMediaFormat">
       <HintPath>..\..\..\..\..\..\Masterwow3\Downloads\NAudio\NAudio.WindowsMediaFormat.dll</HintPath>
     </Reference>
+    <Reference Include="Sockets.Plugin, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\rda.SocketsForPCL.2.0.0-pre2\lib\net45\Sockets.Plugin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sockets.Plugin.Abstractions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\rda.SocketsForPCL.2.0.0-pre2\lib\net45\Sockets.Plugin.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -71,6 +79,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\Application.cs" />
+    <Compile Include="Views\Main\View\Converter\BoolToToggleContentConverter.cs" />
     <Compile Include="Views\Splash\ViewModel\SplashViewModel.cs" />
     <Compile Include="Views\Splash\View\SplashView.xaml.cs">
       <DependentUpon>SplashView.xaml</DependentUpon>
@@ -87,7 +96,6 @@
     <Compile Include="Base\ClassContainer.cs" />
     <Compile Include="Base\DelegateCommand.cs" />
     <Compile Include="Base\MulticastConnection.cs" />
-    <Compile Include="Base\WebserviceConnection.cs" />
     <Compile Include="Capturing\RecordingController.cs" />
     <Compile Include="Capturing\SavingWaveProvider.cs" />
     <Compile Include="Languages.cs" />
@@ -133,9 +141,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entitie\Entitie.csproj">
-      <Project>{BF129A15-FB44-470A-B45E-6CAA845C054D}</Project>
-      <Name>Entitie</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{1c0125b8-a284-4272-8fd2-1898e9b82b23}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webservice.Core\Webservice.Core.csproj">
+      <Project>{bf5cde9c-7fad-422c-9ef7-c2f667f9eccd}</Project>
+      <Name>Webservice.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

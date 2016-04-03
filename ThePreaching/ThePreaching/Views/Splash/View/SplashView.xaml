@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThePreaching.Views.Splash.View"
         mc:Ignorable="d"
-        Title="SplashView" Height="250" Width="350" 
+        Title="SplashView"
+        AllowsTransparency="True" 
+        Width="250"
         ResizeMode="NoResize"
+        Background="Transparent"
         WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Grid>
-        <Border BorderBrush="Black" BorderThickness="0,2"
-                   Height="25">
-            <StackPanel VerticalAlignment="Center"
-                        Margin="5,0">
-                <TextBlock Text="{Binding LoadingText}"/>
-            </StackPanel>
-        </Border>
+    <Grid >
+        <StackPanel VerticalAlignment="Center"
+                    Background="White">
+            <TextBlock Text="{Binding LoadingText}"/>
+            <ProgressBar Height="20" IsIndeterminate="True"/>
+        </StackPanel>
 
 
     </Grid>

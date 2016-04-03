@@ -11,7 +11,8 @@ namespace ThePreaching.Capturing
     public class RecordingController
     {
         private WaveIn recorder;
-        private BufferedWaveProvider bufferedWaveProvider;
+        //private BufferedWaveProvider bufferedWaveProvider;
+        private WaveFileWriter _waveWriter;
         private SavingWaveProvider savingWaveProvider;
         private readonly MulticastConnection multicastConnection;
 
@@ -29,8 +30,9 @@ namespace ThePreaching.Capturing
             recorder.DataAvailable += RecorderOnDataAvailable;
 
             // set up our signal chain
-            bufferedWaveProvider = new BufferedWaveProvider(recorder.WaveFormat);
-            savingWaveProvider = new SavingWaveProvider(bufferedWaveProvider, filePath);
+            _waveWriter = new NAudio.Wave.WaveFileWriter(filePath, recorder.WaveFormat);
+           // bufferedWaveProvider = new BufferedWaveProvider(recorder.WaveFormat);
+          //  savingWaveProvider = new SavingWaveProvider(bufferedWaveProvider, filePath);
             
             recorder.StartRecording();
         }
@@ -39,13 +41,15 @@ namespace ThePreaching.Capturing
             // stop recording
             recorder.StopRecording();
             // finalise the WAV file
-            savingWaveProvider.Dispose();
-
+            //savingWaveProvider.Dispose();
+            _waveWriter.Dispose();
         }
         #region Events
         private void RecorderOnDataAvailable(object sender, WaveInEventArgs waveInEventArgs)
         {
-            bufferedWaveProvider.AddSamples(waveInEventArgs.Buffer, 0, waveInEventArgs.BytesRecorded);
+            //bufferedWaveProvider.AddSamples(waveInEventArgs.Buffer, 0, waveInEventArgs.BytesRecorded);
+            _waveWriter.Write(waveInEventArgs.Buffer,0,waveInEventArgs.BytesRecorded);
+            _waveWriter.FlushAsync();
             multicastConnection.UdpClient.Send(waveInEventArgs.Buffer, waveInEventArgs.BytesRecorded, multicastConnection.RemoteEndPoint);
         }
         #endregion

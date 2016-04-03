@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="NetworkComms.Net">
+  <name>NetworkComms.Net</name>
+  <publisher>NetworkComms.Net</publisher>
+  <publisher-url>http://www.networkcomms.net</publisher-url>
+  <version>2.3.0</version>
+  <summary>Feature-rich cross-platform library that simplifies peer-to-peer and client-server network applications.</summary>
+  <screenshots>
+    <img src="screenshots/screenshot.png" title="welcome" />
+  </screenshots>
+  <samples>
+    <sample id="ExamplesChat.WP8">
+      <name>WP8 Sample.</name>
+      <summary>Basic WP8 text message chat application.</summary>
+    </sample>
+    <sample id="ExamplesChat.iOS">
+      <name>iOS Sample.</name>
+      <summary>Basic iOS text message chat application.</summary>
+    </sample>
+    <sample id="ExamplesChat.Android">
+      <name>Android Sample.</name>
+      <summary>Basic android text message chat application.</summary>
+    </sample>
+    <sample id="ExamplesChat.WPF">
+      <name>WPF Sample.</name>
+      <summary>Native windows chat example using WPF.</summary>
+    </sample>
+  </samples>
+</component>

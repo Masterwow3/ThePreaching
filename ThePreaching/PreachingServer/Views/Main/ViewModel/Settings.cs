@@ -1,50 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using PreachingServer.Annotations;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using Entitie.Requests.Result;
 
 namespace PreachingServer.Views.Main.ViewModel
 {
     [Serializable]
-    public class Settings : INotifyPropertyChanged
+    public class Settings
     {
-        #region Fields
-        private string _serverName;
-        private int _port;
-        private string _currentPreacher;
-        #endregion
+        public Settings()
+        {
+            ServerName = GetLocalIPAddress();
+            Port = 8777;
+            AllowedLanguages = new Dictionary<string, string>();
+        }
 
         #region Properties
-        public string ServerName
-        {
-            get { return _serverName; }
-            set
-            {
-                _serverName = value;
-                OnPropertyChanged();
-            }
-        }
-        public int Port
-        {
-            get { return _port; }
-            set
-            {
-                _port = value;
-                OnPropertyChanged();
-            }
-        }
-        public string CurrentPreacher
-        {
-            get { return _currentPreacher; }
-            set
-            {
-                _currentPreacher = value;
-                OnPropertyChanged();
-            }
-        }
+        public string ServerName { get; set; }
+        public int Port { get; set; }
+        public Dictionary<string,string> AllowedLanguages { get; set; }
         #endregion
 
         #region Methods
@@ -85,7 +68,46 @@ namespace PreachingServer.Views.Main.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        private string GetLocalIPAddress()
+        {
+            //var host = Dns.GetHostEntry(Dns.GetHostName());
+            Dictionary<string,int> ipRanking = new Dictionary<string, int>();
 
+            // Get a list of all network interfaces (usually one per network card, dialup, and VPN connection) 
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (NetworkInterface network in networkInterfaces.Where(x=>x.OperationalStatus != OperationalStatus.Down && x.NetworkInterfaceType != NetworkInterfaceType.Loopback))
+            {
+                // Read the IP configuration for each network 
+                IPInterfaceProperties properties = network.GetIPProperties();
+
+                // Each network interface may have multiple IP addresses 
+                foreach (IPAddressInformation address in properties.UnicastAddresses)
+                {
+                    // We're only interested in IPv4 addresses for now 
+                    if (address.Address.AddressFamily != AddressFamily.InterNetwork)
+                        continue;
+
+                    // Ignore loopback addresses (e.g., 127.0.0.1) 
+                    if (IPAddress.IsLoopback(address.Address))
+                        continue;
+
+                    int rank = 0;
+                    rank += properties.DhcpServerAddresses.Count;
+                    try
+                    {
+                        ipRanking.Add(address.Address.ToString(), rank);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        ipRanking[address.Address.ToString()] += 1;
+                    }
+                }
+            }
+            if(ipRanking.Count == 0)
+                return System.Security.Principal.WindowsIdentity.GetCurrent()?.Name.ToString();
+            return ipRanking.OrderByDescending(x=>x.Value).First().Key;
+        }
         public IResult LoadSettings()
         {
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);

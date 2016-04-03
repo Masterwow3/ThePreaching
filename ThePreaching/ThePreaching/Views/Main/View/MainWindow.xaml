@@ -4,22 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ThePreaching"
-       mc:Ignorable="d"
+        xmlns:converter="clr-namespace:ThePreaching.Views.Main.View.Converter"
+        mc:Ignorable="d"
         Title="The Preaching - Translator" Height="350" Width="525">
     <Window.Resources>
+        <converter:BoolToToggleContentConverter x:Key="BoolToToggleContentConverter"/>
     </Window.Resources>
-    <Grid Margin="5">
-        <StackPanel>
-            <TextBlock Text="The Preaching Translator"
+    <StackPanel Margin="4">
+        <TextBlock Text="The Preaching Translator"
                        FontWeight="Bold"
                        FontSize="21.333"
                        Margin="0,0,0,10"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="S"
-                    Command="{Binding StartRecordingCommand}"/>
-                <Button Content="stop"
-                    Command="{Binding StopRecordingCommand}"/>
-            </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Übersetzer Sprache: "/>
+            <ComboBox MinWidth="100" Width="auto"/>
         </StackPanel>
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Text="Aufnahme "
+                           VerticalAlignment="Center"/>
+            <ToggleButton Content="{Binding ElementName=StartStopRecordButton,
+                    Path=IsChecked,Converter={StaticResource BoolToToggleContentConverter}}"
+                              Name="StartStopRecordButton"
+                    Command="{Binding StartRecordingCommand}"
+                              CommandParameter="{Binding ElementName=StartStopRecordButton,
+                    Path=IsChecked}" />
+        </StackPanel>
+    </StackPanel>
 </Window>

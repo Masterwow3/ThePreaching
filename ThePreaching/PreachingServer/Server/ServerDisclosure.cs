@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Entitie.Requests.Multicast;
 
@@ -14,6 +15,8 @@ namespace PreachingServer.Server
         private IPEndPoint _remoteep;
         private string _serverName;
         private bool _announcerIsRunning ;
+        private CancellationTokenSource _cancellationTokenSource ;
+
         public ServerDisclosure(string serverName)
         {
             _client = new UdpClient();
@@ -32,16 +35,28 @@ namespace PreachingServer.Server
 
         public void StartDisclosure()
         {
-            ServerAnnouncer();
+            if(_announcerIsRunning)
+                return;
+            _cancellationTokenSource = new CancellationTokenSource();
+            ServerAnnouncer(_cancellationTokenSource);
         }
-        private async Task ServerAnnouncer()
+
+        public void StopDisclosure()
         {
+            _cancellationTokenSource.Cancel();
+        }
+        private async Task ServerAnnouncer(CancellationTokenSource source)
+        {
+            
+            CancellationToken ct = source.Token;
             await Task.Run(() =>
             {
                 _announcerIsRunning = true;
                 var buffer = Encoding.Unicode.GetBytes(MulticastCommunication.ImTheServer + _serverName);
                 while (true)
                 {
+                    if(ct.IsCancellationRequested)
+                        break;
                     Byte[] data = _client.Receive(ref _localEp);
                     string strData = Encoding.Unicode.GetString(data);
                     if (strData == MulticastCommunication.WhoIsServer)
@@ -52,7 +67,5 @@ namespace PreachingServer.Server
             });
             _announcerIsRunning = false;
         }
-
-
     }
 }

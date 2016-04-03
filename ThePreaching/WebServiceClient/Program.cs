@@ -7,9 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using WebServiceClient.Base.WebService;
-using Entitie;
 using System.Runtime.Serialization.Json;
-using Entitie.Language;
 
 namespace WebServiceClient
 {

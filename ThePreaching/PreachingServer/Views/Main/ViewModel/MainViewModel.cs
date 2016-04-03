@@ -2,39 +2,39 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using PreachingServer.Annotations;
 using PreachingServer.Server;
 using PreachingServer.Server.WebService;
+using PreachingServer.Views.Main.View;
 using ThePreaching.Base;
+using System.Speech.Recognition;
 
 namespace PreachingServer.Views.Main.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private ServerDisclosure _disclosure;
         private Settings _settings;
         private int _port;
         private string _currentPreacher;
         private string _serverName;
-        private WebService _webService;
         private bool _setServerNameEnabled;
 
         public MainViewModel()
         {
             SetServerNameEnabled = true;
-            SetServernameCommand = new DelegateCommand(StartServer);
             SetPreacherCommand = new DelegateCommand(SetPreacher);
-            Settings = new Settings();
+            OpenSettingsCommand = new DelegateCommand(OpenSettings);
         }
 
 
 
         #region Properties
         #region Commands
-
-        public ICommand SetServernameCommand { get; private set; }
+        
         public ICommand SetPreacherCommand { get; private set; }
+        public ICommand OpenSettingsCommand { get; private set; }
         #endregion
 
         public bool SetServerNameEnabled
@@ -88,27 +88,43 @@ namespace PreachingServer.Views.Main.ViewModel
         #endregion
 
         #region Methods
+        #region Commands
 
+        private void OpenSettings()
+        {
+            SettingsView view = new SettingsView();
+            view.DataContext = new SettingsViewModel();
+            view.ShowDialog();
+        }
+        #endregion
         private async Task RefreshUserList()
         {
             
         }
-        private void SetPreacher(object param)
+        private void SetPreacher()
         {
-            Settings.CurrentPreacher = CurrentPreacher;
+            AppSettings.CurrentPreacher = CurrentPreacher;
         }
-        private async void StartServer(object param)
+
+        private void startTest()
         {
-            if (String.IsNullOrWhiteSpace(ServerName))
-                return;
-            if (Port < 1023 || Port > 65535)
-                return;
-            Settings.Port = this.Port;
-            Settings.ServerName = this.ServerName;
-            _disclosure = new ServerDisclosure($"{Settings.ServerName}:{Settings.Port}");
-            _disclosure.StartDisclosure();
-            _webService = new WebService(Settings.ServerName,Settings.Port);
-            _webService.StartWebService();
+            SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
+            Grammar dictationGrammar = new DictationGrammar();
+            recognizer.LoadGrammar(dictationGrammar);
+            try
+            {
+                recognizer.SetInputToDefaultAudioDevice();
+                RecognitionResult result = recognizer.Recognize();
+                string text = result.Text;
+            }
+            catch (InvalidOperationException exception)
+            {
+                var error = String.Format("Could not recognize input from default aduio device. Is a microphone or sound card available?\r\n{0} - {1}.", exception.Source, exception.Message);
+            }
+            finally
+            {
+                recognizer.UnloadAllGrammars();
+            }
         }
         #endregion
 

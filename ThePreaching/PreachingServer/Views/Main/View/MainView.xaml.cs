@@ -12,21 +12,7 @@ namespace PreachingServer.Views.Main.View
         public MainView()
         {
             InitializeComponent();
-            this.DataContext = MainViewModel= new MainViewModel();
-        }
-
-        public MainViewModel MainViewModel { get; set; }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            MainViewModel.Settings.SaveSettings();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MainViewModel.Settings.LoadSettings();
-            MainViewModel.Port = MainViewModel.Settings.Port;
-            MainViewModel.ServerName = MainViewModel.Settings.ServerName;
+            this.DataContext = new MainViewModel();
         }
     }
 }

@@ -21,5 +21,9 @@ namespace PreachingServer.Server.WebService
         {
             _serviceHost.Open();
         }
+        public void StopWebService()
+        {
+            _serviceHost.Close();
+        }
     }
 }

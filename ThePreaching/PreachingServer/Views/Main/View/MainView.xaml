@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PreachingServer"
              mc:Ignorable="d" 
         Title="The Preaching - Server"
-             d:DesignHeight="300" d:DesignWidth="600" Closing="Window_Closing" Loaded="Window_Loaded">
+             d:DesignHeight="300" d:DesignWidth="600">
     <StackPanel Margin="5">
         <TextBlock Text="The Preaching Server" FontWeight="Bold" FontSize="21.333"
                    />
@@ -33,25 +33,8 @@
                             Margin="5,0,0,0"
                             Command="{Binding SetPreacherCommand}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel>
-                        <TextBlock Text="Server Hostname / IP Adresse:"/>
-                        <TextBox Width="200"
-                                 Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                    <StackPanel Margin="3,0,0,0">
-                        <TextBlock Text="Port:"/>
-                        <TextBox MinWidth="50"
-                             MaxLength="5"
-                                 Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                    <Button Content="Bestätigen"
-                            Margin="5,0,0,0"
-                            IsEnabled="{Binding SetServerNameEnabled}"
-                            Command="{Binding SetServernameCommand}"
-                            VerticalAlignment="Bottom"/>
-                </StackPanel>
-
+                <Button Content="Einstellungen"
+                        Command="{Binding OpenSettingsCommand}"/>
 
             </StackPanel>
         </StackPanel>
